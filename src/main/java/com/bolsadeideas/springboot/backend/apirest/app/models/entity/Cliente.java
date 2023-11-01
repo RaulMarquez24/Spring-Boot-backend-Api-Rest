@@ -3,8 +3,6 @@ package com.bolsadeideas.springboot.backend.apirest.app.models.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,10 +21,12 @@ public class Cliente implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String nombre;
 
     private String apellido;
 
+    @Column(nullable = false, unique = true)
     private String email;
 
     @Column(name = "create_at")
@@ -34,7 +34,7 @@ public class Cliente implements Serializable {
     private Date createAt;
 
     @PrePersist
-    public void prePersist(){
+    public void prePersist() {
         createAt = new Date();
     }
 
